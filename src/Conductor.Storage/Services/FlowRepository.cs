@@ -37,17 +37,6 @@ namespace Conductor.Storage.Services
             var json = result.First().Flow.ToJson();
             var flow = JsonConvert.DeserializeObject<Flow>(json);
            
-            var definitions = _definitionsCollection.AsQueryable()
-                .Where(x => flow.DefinitionIds.Contains(x.ExternalId))
-                .Select(x => x.Definition);
-
-            foreach (var definitionBson in definitions)
-            {
-                var definitionJson = definitionBson.ToJson();
-                var definition = JsonConvert.DeserializeObject<Definition>(definitionJson);
-                flow.Definitions.Add(definition);
-            }
-
             return flow;
         }
 
