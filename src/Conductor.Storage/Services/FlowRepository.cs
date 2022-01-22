@@ -13,9 +13,7 @@ namespace Conductor.Storage.Services
     public class FlowRepository : IFlowRepository
     {
         private readonly IMongoDatabase _database;
-
         private IMongoCollection<StoredFlow> _collection => _database.GetCollection<StoredFlow>("Flows");
-        private IMongoCollection<StoredDefinition> _definitionsCollection => _database.GetCollection<StoredDefinition>("Definitions");
 
         static FlowRepository()
         {
