@@ -17,16 +17,6 @@ namespace Conductor.Domain.Services
             _logger = loggerFactory.CreateLogger(GetType());
         }
 
-        public void RegisterNewFlow(Flow flow)
-        {
-            _repository.Save(flow);
-        }
-
-        public void ReplaceVersion(Definition definition)
-        {
-            throw new NotImplementedException();
-        }
-
         public Flow GetFlow(string id)
         {
             return _repository.Find(id);
@@ -35,6 +25,11 @@ namespace Conductor.Domain.Services
         public IEnumerable<Flow> GetFlows(int pageNumber, int pageSize)
         {
             return _repository.Get(pageNumber, pageSize);
+        }
+
+        public void SaveFlow(Flow flow)
+        {
+            _repository.Save(flow);
         }
     }
 }

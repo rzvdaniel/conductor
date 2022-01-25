@@ -44,7 +44,7 @@ namespace Conductor.Controllers
         [Authorize(Policy = Policies.Author)]
         public void Post([FromBody] Flow value)
         {
-            _service.RegisterNewFlow(value);
+            _service.SaveFlow(value);
             Response.StatusCode = 204;
         }
 

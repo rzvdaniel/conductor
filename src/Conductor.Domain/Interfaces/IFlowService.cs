@@ -5,8 +5,8 @@ namespace Conductor.Domain.Interfaces
 {
     public interface IFlowService
     {
-        void RegisterNewFlow(Flow flow);
         Flow GetFlow(string id);
         IEnumerable<Flow> GetFlows(int pageNumber, int pageSize);
+        void SaveFlow(Flow flow);
     }
 }

@@ -1,9 +1,7 @@
 ﻿using Conductor.Domain.Interfaces;
 using Conductor.Domain.Models;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,13 +33,6 @@ namespace Conductor.Storage.Services
             return flow;
         }
 
-        public IEnumerable<Flow> GetAll()
-        {
-            var results = _collection.AsQueryable();
-
-            return results;
-        }
-
         public IEnumerable<Flow> Get(int pageNumber, int pageSize)
         {
             var paginationValid = pageNumber > 0 && pageSize > 0;
@@ -56,11 +47,7 @@ namespace Conductor.Storage.Services
                 _collection
                     .AsQueryable();
 
-            foreach (var item in results)
-            {
-                var json = item.ToJson();
-                yield return JsonConvert.DeserializeObject<Flow>(json);
-            }
+            return results;
         }
 
         public void Save(Flow flow)
